@@ -269,15 +269,19 @@ It returns all the named entities of all categories stored in the databse with t
 The application is containerised in a docker image.
     
 To start running, in the terminal input the following,
+    
 ```
     docker pull docker.pkg.github.com/hanyujiangg/ner-flask-api-postgres-docker/python-docker:1.1
 ```
 
     Run the pulled docker image and publish a port for our container
+    
 ```
     docker run --publish 5000:5000 docker.pkg.github.com/hanyujiangg/ner-flask-api-postgres-docker/python-docker:1.1
 ```
+    
 This should be the output after executing the above command:
+    
 ```
  $ docker run --publish 5000:5000 docker.pkg.github.com/hanyujiangg/ner-flask-api-postgres-docker/python-docker:1.1
  * Serving Flask app 'flask_api' (lazy loading)
