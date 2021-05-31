@@ -18,3 +18,4 @@ RUN python -c "import nltk;nltk.download('FreqDist')"
 
 COPY . .
 
+CMD [ "python", "flask_api.py"]
