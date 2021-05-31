@@ -51,13 +51,16 @@ NER output format standardisation was carried out to compare the prediction resu
 As we can see from the results above, Spacy model is able to capture more named entities and more occurrence of the entities. Thus, for this project Spacy en_core_web_sm is used. 
 
 ## Named Entity Labels in Spacy
-![image](https://user-images.githubusercontent.com/35590255/120158172-68ef6f80-c226-11eb-8a0c-a6c80a9fe16c.png)
-![image](https://user-images.githubusercontent.com/35590255/120158189-6d1b8d00-c226-11eb-971f-242168fcd596.png)
+|   |   |
+|---|---|
+|  ![image](https://user-images.githubusercontent.com/35590255/120158172-68ef6f80-c226-11eb-8a0c-a6c80a9fe16c.png) | ![image](https://user-images.githubusercontent.com/35590255/120158189-6d1b8d00-c226-11eb-971f-242168fcd596.png)  |
+
+
 
 
 ## API Introduction
 The application is a REST API development with Flask. It serves three functions: 
-1. Receives news input and responds with the top 10 most frequent named entity in each news input 
+1. Receives news input and responds with the top 10 most frequent named entity in each news input, and store the news and predicted entities in the Postgres database if any. 
 2. Retrieve news in the Postgres database
 3. Retrieve named entities and frequencies for a particular piece of news and/or category(ORG DATE etc.) in the database
 
@@ -69,6 +72,7 @@ The API is designed to return various HTTP status codes in the response header
 | 200              | ok                      |
 | 206              | Partial Success Request |
 | 400              | Bad Request             |
+| 404              | Request URLNot Found    |
 | 500              | Internal Server Error   |
 
 Please change the URL according to the usage. 
