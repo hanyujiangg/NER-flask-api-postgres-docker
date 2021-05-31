@@ -52,7 +52,7 @@ http://127.0.0.1:5000/news <br/>
 localhost:5000/news
 
 #### JSON Body 
-see sample_news_10.json
+see [sample_news_10.json](https://github.com/hanyujiangg/NER-flask-api-postgres-docker/blob/master/sample_news_10.json)
 
 #### Response
 
