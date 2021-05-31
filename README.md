@@ -9,7 +9,18 @@ This serves as a proof-of-concept for further development in the future.
 3. Help analysts have a rough idea of the news articles by skimming through the key named entities.
 
 ## Named Entity Recognition Models
-Literature review and testing were carried out to determine the best NER model for the data given the sample input news data as file sample_news_10.json for this project. For this POC, Stanford NER model and Spacy NER models were chosen and compared. Since Stanford NER model produces NER prediction in a different format than Spacy, functions are created to standardise the output in the desired format. 
+Literature review and testing were carried out to determine the best NER model for the data given the sample input news data as file sample_news_10.json for this project. For this POC, Stanford NER model and Spacy NER models were chosen and compared. 
+
+### Stanford NER Model
+This model is implemented in Java and is based on linear chain CRF (Conditional Random Field) sequence models. For various applications, custom models can be trained with labeled data sets.
+
+It has three models:
+1. 3-class : Location, person, organization
+2. 4-class : Location, person, organization, misc.
+3. 7-class : Location, person, organization, money, percent, date, time
+
+The 7 class model is used in the comparison. 
+Since Stanford NER model produces NER prediction in a different format than Spacy, functions are created to standardise the output in the desired format. 
 
 #### Stanford NER en_core_web_sm output before modification: 
 
@@ -17,7 +28,8 @@ Literature review and testing were carried out to determine the best NER model f
 [('Meyer', 'ORGANIZATION'), ('Handelman', 'ORGANIZATION'), ('Co.', 'ORGANIZATION'), ('Increases', 'ORGANIZATION'), ('Position', 'ORGANIZATION'), ('in', 'O'), ('TE', 'ORGANIZATION'), ('Connectivity', 'ORGANIZATION'), ('Ltd.', 'ORGANIZATION'), ('(', 'O'), ('NYSE', 'O'),...]
 ```
 
-
+### Spacy NER Model
+The Spacy NER system contains a word embedding strategy using sub word features and "Bloom" embed, and a deep convolution neural network with residual connections. The system is designed to give a good balance of efficiency, accuracy and adaptability.
 
 #### Spacy NER en_core_web_sm output before modification: 
 ```
@@ -48,16 +60,19 @@ NER output format standardisation was carried out to compare the prediction resu
 
 ![Screenshot 2021-05-31 at 2 07 05 PM](https://user-images.githubusercontent.com/35590255/120147622-82d68580-c219-11eb-9d8d-6734323edb4e.jpg)
 
-As we can see from the results above, Spacy model is able to capture more named entities and more occurrence of the entities. Thus, for this project Spacy en_core_web_sm is used. 
+As we can see from the results above, Spacy model is able to capture more named entities and more occurrence of the entities. Thus, for this project **Spacy en_core_web_sm** is used. 
 
 ## Named Entity Labels in Spacy
-![image](https://user-images.githubusercontent.com/35590255/120158172-68ef6f80-c226-11eb-8a0c-a6c80a9fe16c.png)
-![image](https://user-images.githubusercontent.com/35590255/120158189-6d1b8d00-c226-11eb-971f-242168fcd596.png)
+|   |   |
+|---|---|
+|  ![image](https://user-images.githubusercontent.com/35590255/120158172-68ef6f80-c226-11eb-8a0c-a6c80a9fe16c.png) | ![image](https://user-images.githubusercontent.com/35590255/120158189-6d1b8d00-c226-11eb-971f-242168fcd596.png)  |
+
+
 
 
 ## API Introduction
 The application is a REST API development with Flask. It serves three functions: 
-1. Receives news input and responds with the top 10 most frequent named entity in each news input 
+1. Receives news input and responds with the top 10 most frequent named entity in each news input, and store the news and predicted entities in the Postgres database if any. 
 2. Retrieve news in the Postgres database
 3. Retrieve named entities and frequencies for a particular piece of news and/or category(ORG DATE etc.) in the database
 
@@ -66,18 +81,21 @@ The API is designed to return various HTTP status codes in the response header
 
 | HTTP Status Code | Remarks                 |
 |------------------|-------------------------|
-| 200              | ok                      |
+| 200              | OK                      |
 | 206              | Partial Success Request |
 | 400              | Bad Request             |
+| 404              | Request URLNot Found    |
 | 500              | Internal Server Error   |
 
 Please change the URL according to the usage. 
-flask: http://127.0.0.1:5000/
+flask: http://127.0.0.1:5000/ (If it is run directly after git clone the code without the Docker image)
 localhost: localhost:5000/ (This is the default URL after pull and run the docker image)
 
 
 ### Send News -/POST
-http://127.0.0.1:5000/news
+Send news articles to get back predicted named entities for each one. 
+
+http://127.0.0.1:5000/news <br/>
 localhost:5000/news
 
 #### JSON Body 
@@ -183,7 +201,9 @@ see sample_news_10.json
 It returns the top 10 most frequent entities in each news article along with error_message if any. If the database connection fails or news or entity already exists in the database, the respective error message will appear in the JSON response and status code 206 will be returned. 
 
 ### Retrieve News -/GET
-http://127.0.0.1:5000/news
+Retriveves all news articles in the database
+
+http://127.0.0.1:5000/news <br/>
 localhost:5000/news
 
 #### Response 
@@ -208,7 +228,9 @@ localhost:5000/news
 It returns the news articles stored in the database from previous injection from send news operation. 
 
 ### Retrieve Entity -/GET
-http://127.0.0.1:5000/<news_id>/<Category-optional>
+Retrieve all entity based on the user inputs
+
+http://127.0.0.1:5000/<news_id>/<Category-optional> <br/>
 localhost:5000/<news_id>/<Category-optional>
     
 This GET method has two formats for different use cases.      
@@ -534,6 +556,8 @@ However, the send news function should work even without a database.
 3. https://flask.palletsprojects.com/en/2.0.x/
 4. https://spacy.io/usage/spacy-101
 5. https://nlp.stanford.edu/software/CRF-NER.html
+6. https://blog.vsoftconsulting.com/blog/understanding-named-entity-recognition-pre-trained-models#:~:text=Model%20Architecture,-The%20current%20architecture&text=The%20Spacy%20NER%20system%20contains,of%20efficiency%2C%20accuracy%20and%20adaptability.
+    
     
     
 
