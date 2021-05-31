@@ -271,10 +271,13 @@ The application is containerised in a docker image.
 To start running, in the terminal input the following,
     
 ```
+    
     docker pull docker.pkg.github.com/hanyujiangg/ner-flask-api-postgres-docker/python-docker:1.1
+    
 ```
-
+<br/>
     Run the pulled docker image and publish a port for our container
+  <br/>  
     
 ```
     docker run --publish 5000:5000 docker.pkg.github.com/hanyujiangg/ner-flask-api-postgres-docker/python-docker:1.1
