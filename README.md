@@ -279,7 +279,7 @@ To start running, in the terminal input the following,
 ```
 This should be the output after executing the above command:
 ```
-  Jiangs-MBP:~ Hanyu$ docker run --publish 5000:5000 docker.pkg.github.com/hanyujiangg/ner-flask-api-postgres-docker/python-docker:1.1
+ $ docker run --publish 5000:5000 docker.pkg.github.com/hanyujiangg/ner-flask-api-postgres-docker/python-docker:1.1
  * Serving Flask app 'flask_api' (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
