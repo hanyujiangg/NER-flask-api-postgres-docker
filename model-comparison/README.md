@@ -1,5 +1,5 @@
 
-# Named Entity Recognition Models
+# Named Entity Recognition Model Comparison
 Literature review and testing were carried out to determine the best NER model for the data given the sample input news data as file sample_news_10.json for this project. For this POC, Stanford NER model and Spacy NER models were chosen and compared. 
 
 ### Stanford NER Model
