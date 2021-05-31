@@ -67,10 +67,7 @@ see sample_news_10.json
         "ETH": {
             "frequency": 4,
             "category": "ORG"
-        },
-        
-        ...
-        
+        }
     },
     "8": {
         "Trump": {
@@ -80,9 +77,7 @@ see sample_news_10.json
         "House": {
             "frequency": 6,
             "category": "ORG"
-        },
-        
-        ...
+        }
     },
     "error_message": {
         "news_database": "news is not inserted successfully",
