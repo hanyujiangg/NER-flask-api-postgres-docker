@@ -476,7 +476,7 @@ To start running, in the terminal input the following,
 ```
 And use send news API through Postman to start off. 
     
-## Database configuration 
+## Postgres database configuration 
 The application is supposed to connect with a local Postgres database. 
 Create a local postgres database and change the connection.py accordingly.
     
@@ -490,5 +490,10 @@ DB_PORT = "5432"
 ```
 However, the send news function should work even without a database. 
 
+## Reference
+https://docs.docker.com/language/python/build-images/
+https://towardsdatascience.com/the-right-way-to-build-an-api-with-python-cd08ab285f8f
+https://flask.palletsprojects.com/en/2.0.x/
+    
 
 
