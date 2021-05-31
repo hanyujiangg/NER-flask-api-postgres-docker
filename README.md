@@ -491,9 +491,9 @@ DB_PORT = "5432"
 However, the send news function should work even without a database. 
 
 ## Reference
-https://docs.docker.com/language/python/build-images/
-https://towardsdatascience.com/the-right-way-to-build-an-api-with-python-cd08ab285f8f
-https://flask.palletsprojects.com/en/2.0.x/
+1. https://docs.docker.com/language/python/build-images/
+2. https://towardsdatascience.com/the-right-way-to-build-an-api-with-python-cd08ab285f8f
+3. https://flask.palletsprojects.com/en/2.0.x/
     
 
 
