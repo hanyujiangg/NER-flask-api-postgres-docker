@@ -93,7 +93,7 @@ localhost: localhost:5000/ (This is the default URL after pull and run the docke
 
 
 ### Send News -/POST
-Send news articles to get back predicted named entities for each one. 
+Send news articles to get back predicted named entities for each article. 
 
 http://127.0.0.1:5000/news <br/>
 localhost:5000/news
