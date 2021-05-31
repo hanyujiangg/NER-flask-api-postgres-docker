@@ -66,6 +66,9 @@ http://127.0.0.1:5000/news
 see sample_news_10.json
 
 #### Response
+
+'''
+
 {
     "7": {
         "Ethereum": {
@@ -156,6 +159,8 @@ see sample_news_10.json
         "entity_database": "entities are not inserted successfully"
     }
 }
+
+'''
 
 It returns the top 10 most frequent entities in each news article along with error_message if any. If the database connection fails or news or entity already exists in the database, the respective error message will appear in the JSON response and status code 206 will be returned. 
 
