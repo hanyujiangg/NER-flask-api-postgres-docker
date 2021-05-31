@@ -68,38 +68,9 @@ see sample_news_10.json
             "frequency": 4,
             "category": "ORG"
         },
-        "ATH": {
-            "frequency": 3,
-            "category": "ORG"
-        },
-        "Bitcoin Ethereum News\n": {
-            "frequency": 1,
-            "category": "ORG"
-        },
-        "1,800": {
-            "frequency": 1,
-            "category": "MONEY"
-        },
-        "2,000": {
-            "frequency": 1,
-            "category": "MONEY"
-        },
-        "CoinMetrics": {
-            "frequency": 1,
-            "category": "ORG"
-        },
-        "the summer of June 2020": {
-            "frequency": 1,
-            "category": "DATE"
-        },
-        "between 500k-600k": {
-            "frequency": 1,
-            "category": "CARDINAL"
-        },
-        "January 2021": {
-            "frequency": 1,
-            "category": "DATE"
-        }
+        
+        ...
+        
     },
     "8": {
         "Trump": {
@@ -110,38 +81,8 @@ see sample_news_10.json
             "frequency": 6,
             "category": "ORG"
         },
-        "Republicans": {
-            "frequency": 6,
-            "category": "NORP"
-        },
-        "Capitol": {
-            "frequency": 5,
-            "category": "ORG"
-        },
-        "Joe Neguse": {
-            "frequency": 5,
-            "category": "PERSON"
-        },
-        "Democrats": {
-            "frequency": 4,
-            "category": "NORP"
-        },
-        "Senate": {
-            "frequency": 4,
-            "category": "ORG"
-        },
-        "February 10, 2021": {
-            "frequency": 3,
-            "category": "DATE"
-        },
-        "Lopatic": {
-            "frequency": 3,
-            "category": "NORP"
-        },
-        "Republican": {
-            "frequency": 3,
-            "category": "NORP"
-        }
+        
+        ...
     },
     "error_message": {
         "news_database": "news is not inserted successfully",
@@ -239,25 +180,8 @@ For http://127.0.0.1:5000/entity/7
         "entity_category": "MONEY",
         "entity_name": "$3.74 million",
         "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "TIME",
-        "entity_name": "a single hour",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "PERSON",
-        "entity_name": "Ryan Selkis",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "Trading View",
-        "count": 1
     }
+
 ]
     
 ```
