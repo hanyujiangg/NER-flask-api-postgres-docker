@@ -203,50 +203,8 @@ For http://127.0.0.1:5000/entity/7/ORG
     {
         "id": 7,
         "entity_category": "ORG",
-        "entity_name": "ETH",
-        "count": 4
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
         "entity_name": "ATH",
         "count": 3
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "Bitcoin Ethereum News\n",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "CoinMetrics",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "CME ETH Futures",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "Messari",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "Ethereum’s",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "Trading View",
-        "count": 1
     },
     {
         "id": 7,
@@ -266,48 +224,6 @@ For http://127.0.0.1:5000/entity/7
 [
     {
         "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "Ethereum",
-        "count": 7
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "ETH",
-        "count": 4
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "ATH",
-        "count": 3
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "Bitcoin Ethereum News\n",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "MONEY",
-        "entity_name": "1,800",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "MONEY",
-        "entity_name": "2,000",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "CoinMetrics",
-        "count": 1
-    },
-    {
-        "id": 7,
         "entity_category": "DATE",
         "entity_name": "the summer of June 2020",
         "count": 1
@@ -316,48 +232,6 @@ For http://127.0.0.1:5000/entity/7
         "id": 7,
         "entity_category": "CARDINAL",
         "entity_name": "between 500k-600k",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "DATE",
-        "entity_name": "January 2021",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "CARDINAL",
-        "entity_name": "at least 10k",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "CME ETH Futures",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "DATE",
-        "entity_name": "the DeFi season",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "DATE",
-        "entity_name": "August-September 2020",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "MONEY",
-        "entity_name": "25.80",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "MONEY",
-        "entity_name": "14.32",
         "count": 1
     },
     {
@@ -374,24 +248,6 @@ For http://127.0.0.1:5000/entity/7
     },
     {
         "id": 7,
-        "entity_category": "DATE",
-        "entity_name": "last Friday",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "MONEY",
-        "entity_name": "$55 million",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "DATE",
-        "entity_name": "the same day",
-        "count": 1
-    },
-    {
-        "id": 7,
         "entity_category": "PERSON",
         "entity_name": "Ryan Selkis",
         "count": 1
@@ -399,55 +255,7 @@ For http://127.0.0.1:5000/entity/7
     {
         "id": 7,
         "entity_category": "ORG",
-        "entity_name": "Messari",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "Ethereum’s",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "CARDINAL",
-        "entity_name": "1s",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
         "entity_name": "Trading View",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "CARDINAL",
-        "entity_name": "1",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "DATE",
-        "entity_name": "2021",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "ORG",
-        "entity_name": "Polkadot",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "PERSON",
-        "entity_name": "Avalanche",
-        "count": 1
-    },
-    {
-        "id": 7,
-        "entity_category": "DATE",
-        "entity_name": "the next few months",
         "count": 1
     }
 ]
