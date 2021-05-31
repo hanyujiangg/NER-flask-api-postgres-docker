@@ -315,11 +315,7 @@ However, the send news function should work even without a database.
 1. https://docs.docker.com/language/python/build-images/
 2. https://towardsdatascience.com/the-right-way-to-build-an-api-with-python-cd08ab285f8f
 3. https://flask.palletsprojects.com/en/2.0.x/
-4. https://spacy.io/usage/spacy-101
-5. https://nlp.stanford.edu/software/CRF-NER.html
-6. https://blog.vsoftconsulting.com/blog/understanding-named-entity-recognition-pre-trained-models#:~:text=Model%20Architecture,-The%20current%20architecture&text=The%20Spacy%20NER%20system%20contains,of%20efficiency%2C%20accuracy%20and%20adaptability.
-    
-    
+
     
 
 
