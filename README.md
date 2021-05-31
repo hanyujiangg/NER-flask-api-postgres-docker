@@ -528,7 +528,7 @@ This should be the output after executing the above command:
    WARNING: This is a development server. Do not use it in a production deployment.
  * Running on http://172.17.0.2:5000/ (Press CTRL+C to quit)
 ```
-And use send news API through Postman to start off. Please note that the default URL is localhost:5000.
+And use send news API through Postman to start off. Please note that the default URL is **localhost:5000**.
     
 ### Postgres database configuration 
 The application is supposed to connect with a local Postgres database. 
