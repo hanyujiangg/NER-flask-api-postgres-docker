@@ -1,4 +1,4 @@
-from flask import Flask,request,json
+from flask import Flask,request,json,make_response
 from flask_restful import Resource, Api, reqparse
 import ast
 import psycopg2
@@ -13,20 +13,16 @@ api = Api(app)
 
 class NewsInput(Resource):
     def get(self):
-        try:
-            conn = connection.get_connection()
-            cur = conn.cursor(cursor_factory = RealDictCursor)
-            query_sql = "select * from News"
-            cur.execute(query_sql)
-            # row_headers=[x[0] for x in cur.description] #this will extract row headers
-            rows = cur.fetchall()
+        conn = connection.get_connection()
+        cur = conn.cursor(cursor_factory = RealDictCursor)
+        query_sql = "select * from News"
+        cur.execute(query_sql)
+        # row_headers=[x[0] for x in cur.description] #this will extract row headers
+        rows = cur.fetchall()
 
-            print("data selected successfully")
-            conn.close()
-            return json.jsonify(rows)
-        except:
-            return json.jsonify({"message":"data is not selected"})
-
+        print("data selected successfully")
+        conn.close()
+        return json.jsonify(rows)
 
 
     def post(self):
@@ -88,7 +84,9 @@ class NewsInput(Resource):
                 print(error)
             
             to_return_json["error_message"] = error_msg
-            return json.jsonify(to_return_json)
+            if error_msg == {}:
+                return make_response(json.jsonify(to_return_json),200)
+            return make_response(json.jsonify(to_return_json),206)
         except Exception as error: 
             print(error)
             return json.jsonify({"message":"entities are not predicted"})
@@ -97,14 +95,12 @@ class NewsInput(Resource):
 
 class Entity(Resource):
     def get(self,id,category=None):
-        # id = request.args.get('id')
-        # category = request.args.get('category')
         conn = connection.get_connection()
         cur = conn.cursor(cursor_factory = RealDictCursor)
         if category:
             cur.execute('''select * from entity where id = %s and entity_category = %s''',(id,category))
         else: 
-            cur.execute('''select * from entity where id = %s ''',id)
+            cur.execute('''select * from entity where id = %s ''',(id,))
         
         rows = cur.fetchall()
         conn.close()
