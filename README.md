@@ -12,11 +12,15 @@ This serves as a proof-of-concept for further development in the future.
 Literature review and testing were carried out to determine the best NER model for the data given the sample input news data as file sample_news_10.json for this project. For this POC, Stanford NER model and Spacy NER models were chosen and compared. Since Stanford NER model produces NER prediction in a different format than Spacy, functions are created to standardise the output in the desired format. 
 
 #### Stanford NER en_core_web_sm output before modification: 
+
+```
 [('Meyer', 'ORGANIZATION'), ('Handelman', 'ORGANIZATION'), ('Co.', 'ORGANIZATION'), ('Increases', 'ORGANIZATION'), ('Position', 'ORGANIZATION'), ('in', 'O'), ('TE', 'ORGANIZATION'), ('Connectivity', 'ORGANIZATION'), ('Ltd.', 'ORGANIZATION'), ('(', 'O'), ('NYSE', 'O'),...]
+```
 
 
 
 #### Spacy NER en_core_web_sm output before modification: 
+```
 Meyer Handelman Co. Increases Position 0 38 ORG
 TE Connectivity Ltd. 42 62 ORG
 NYSE 64 68 ORG
@@ -25,8 +29,10 @@ Meyer Handelman Co. Increases Position 75 113 ORG
 TE Connectivity Ltd. 117 137 ORG
 NYSE 139 143 ORG
 ...
+```
 
 #### Spacy NER en_core_web_lg output before modification: 
+```
 Meyer Handelman Co. Increases Position 0 38 ORG
 TE Connectivity Ltd. 42 62 ORG
 NYSE 64 68 ORG
@@ -35,6 +41,7 @@ Meyer Handelman Co. Increases Position 75 113 ORG
 TE Connectivity Ltd. 117 137 ORG
 NYSE 139 143 ORG
 ...
+```
 
 From here we see that Spacy en_core_web_sm and en_core_web_lg does not produce a significant difference for our data so en_core_web_sm were chosen for its smaller size. 
 NER output format standardisation was carried out to compare the prediction results for Stanford NER and Spacy en_core_web_sm.
@@ -59,6 +66,7 @@ The API is designed to return various HTTP status codes in the response header
 | 400              | Bad Request             |
 | 500              | Internal Server Error   |
 
+
 ### Send News -/POST
 http://127.0.0.1:5000/news
 
@@ -67,7 +75,7 @@ see sample_news_10.json
 
 #### Response
 
-'''
+```json
 
 {
     "7": {
@@ -160,7 +168,7 @@ see sample_news_10.json
     }
 }
 
-'''
+```
 
 It returns the top 10 most frequent entities in each news article along with error_message if any. If the database connection fails or news or entity already exists in the database, the respective error message will appear in the JSON response and status code 206 will be returned. 
 
@@ -168,6 +176,8 @@ It returns the top 10 most frequent entities in each news article along with err
 http://127.0.0.1:5000/news
 
 #### Response 
+
+```json
 [
     {
         "id": 1,
@@ -182,6 +192,7 @@ http://127.0.0.1:5000/news
         "content": "The moon is full"
     }
 ]
+```
 
 It returns the news articles stored in the database from previous injection from send news operation. 
 
@@ -191,6 +202,8 @@ For example, http://127.0.0.1:5000/entity/7/ORG or http://127.0.0.1:5000/entity/
 
 #### Response 
 For http://127.0.0.1:5000/entity/7/ORG
+    
+```json
 [
     {
         "id": 7,
@@ -253,10 +266,14 @@ For http://127.0.0.1:5000/entity/7/ORG
         "count": 1
     }
 ]
+    
+```
 
 It returns the all the named entities stored in the database for the news with the input news id and input category.
     
 For http://127.0.0.1:5000/entity/7
+    
+```json
 [
     {
         "id": 7,
@@ -446,7 +463,32 @@ For http://127.0.0.1:5000/entity/7
     }
 ]
     
-It returns all the named entities of all categories stored in the databse with the input news id
+```
     
+It returns all the named entities of all categories stored in the databse with the input news id.
+    
+## Docker
+The application is containerised in a docker image.
+    
+To start running, in the terminal input the following,
+```
+    docker pull aliceyangcodehaha/ner-flask-api-postgres-docker
+```
+And use send news API through Postman to start off. 
+    
+## Database configuration 
+The application is supposed to connect with a local Postgres database. 
+Create a local postgres database and change the connection.py accordingly.
+    
+```
+DB_NAME = "mrosbzup"
+DB_USER = "mrosbzup"
+DB_PASS = "aqNEI7Y05XCIS7GQYdgqc9ksMNxqlhwj"
+DB_HOST = "batyr.db.elephantsql.com"
+DB_PORT = "5432"
+    
+```
+However, the send news function should work even without a database. 
+
 
 
