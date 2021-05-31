@@ -50,6 +50,15 @@ The application is a REST API development with Flask. It serves three functions:
 3. Retrieve named entities and frequencies for a particular piece of news and/or category(ORG DATE etc.) in the database
 
 ## API Documentation 
+The API is designed to return various HTTP status codes in the response header
+
+| HTTP Status Code | Remarks                 |
+|------------------|-------------------------|
+| 200              | ok                      |
+| 206              | Partial Success Request |
+| 400              | Bad Request             |
+| 500              | Internal Server Error   |
+
 ### Send News -/POST
 http://127.0.0.1:5000/news
 
@@ -148,10 +157,291 @@ see sample_news_10.json
     }
 }
 
-It returns the top 10 most frequent entities in each news article along with error_message if any. If the database connection fails or news or entity already exists in the database, the respective error message will appear in the JSON response. 
+It returns the top 10 most frequent entities in each news article along with error_message if any. If the database connection fails or news or entity already exists in the database, the respective error message will appear in the JSON response and status code 206 will be returned. 
 
-### Send News -/POST
+### Retrieve News -/GET
 http://127.0.0.1:5000/news
 
-#### JSON Body 
-see sample_news_10.json
+#### Response 
+[
+    {
+        "id": 1,
+        "content": "The stock market rises"
+    },
+    {
+        "id": 2,
+        "content": "The stock market falls"
+    },
+    {
+        "id": 3,
+        "content": "The moon is full"
+    }
+]
+
+It returns the news articles stored in the database from previous injection from send news operation. 
+
+### Retrieve Entity -/GET
+http://127.0.0.1:5000/<news_id>/<Category-optional>
+For example, http://127.0.0.1:5000/entity/7/ORG or http://127.0.0.1:5000/entity/7
+
+#### Response 
+For http://127.0.0.1:5000/entity/7/ORG
+[
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "Ethereum",
+        "count": 7
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "ETH",
+        "count": 4
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "ATH",
+        "count": 3
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "Bitcoin Ethereum News\n",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "CoinMetrics",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "CME ETH Futures",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "Messari",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "Ethereum’s",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "Trading View",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "Polkadot",
+        "count": 1
+    }
+]
+
+It returns the all the named entities stored in the database for the news with the input news id and input category.
+    
+For http://127.0.0.1:5000/entity/7
+[
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "Ethereum",
+        "count": 7
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "ETH",
+        "count": 4
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "ATH",
+        "count": 3
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "Bitcoin Ethereum News\n",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "MONEY",
+        "entity_name": "1,800",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "MONEY",
+        "entity_name": "2,000",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "CoinMetrics",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "DATE",
+        "entity_name": "the summer of June 2020",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "CARDINAL",
+        "entity_name": "between 500k-600k",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "DATE",
+        "entity_name": "January 2021",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "CARDINAL",
+        "entity_name": "at least 10k",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "CME ETH Futures",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "DATE",
+        "entity_name": "the DeFi season",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "DATE",
+        "entity_name": "August-September 2020",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "MONEY",
+        "entity_name": "25.80",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "MONEY",
+        "entity_name": "14.32",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "MONEY",
+        "entity_name": "$3.74 million",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "TIME",
+        "entity_name": "a single hour",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "DATE",
+        "entity_name": "last Friday",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "MONEY",
+        "entity_name": "$55 million",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "DATE",
+        "entity_name": "the same day",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "PERSON",
+        "entity_name": "Ryan Selkis",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "Messari",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "Ethereum’s",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "CARDINAL",
+        "entity_name": "1s",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "Trading View",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "CARDINAL",
+        "entity_name": "1",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "DATE",
+        "entity_name": "2021",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "ORG",
+        "entity_name": "Polkadot",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "PERSON",
+        "entity_name": "Avalanche",
+        "count": 1
+    },
+    {
+        "id": 7,
+        "entity_category": "DATE",
+        "entity_name": "the next few months",
+        "count": 1
+    }
+]
+    
+It returns all the named entities of all categories stored in the databse with the input news id
+    
+
+
