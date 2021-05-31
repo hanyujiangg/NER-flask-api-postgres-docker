@@ -50,6 +50,11 @@ NER output format standardisation was carried out to compare the prediction resu
 
 As we can see from the results above, Spacy model is able to capture more named entities and more occurrence of the entities. Thus, for this project Spacy en_core_web_sm is used. 
 
+## Named Entity Labels in Spacy
+![image](https://user-images.githubusercontent.com/35590255/120158172-68ef6f80-c226-11eb-8a0c-a6c80a9fe16c.png)
+![image](https://user-images.githubusercontent.com/35590255/120158189-6d1b8d00-c226-11eb-971f-242168fcd596.png)
+
+
 ## API Introduction
 The application is a REST API development with Flask. It serves three functions: 
 1. Receives news input and responds with the top 10 most frequent named entity in each news input 
@@ -66,9 +71,14 @@ The API is designed to return various HTTP status codes in the response header
 | 400              | Bad Request             |
 | 500              | Internal Server Error   |
 
+Please change the URL according to the usage. 
+flask: http://127.0.0.1:5000/
+localhost: localhost:5000/ (This is the default URL after pull and run the docker image)
+
 
 ### Send News -/POST
 http://127.0.0.1:5000/news
+localhost:5000/news
 
 #### JSON Body 
 see sample_news_10.json
@@ -174,6 +184,7 @@ It returns the top 10 most frequent entities in each news article along with err
 
 ### Retrieve News -/GET
 http://127.0.0.1:5000/news
+localhost:5000/news
 
 #### Response 
 
@@ -198,6 +209,9 @@ It returns the news articles stored in the database from previous injection from
 
 ### Retrieve Entity -/GET
 http://127.0.0.1:5000/<news_id>/<Category-optional>
+localhost:5000/<news_id>/<Category-optional>
+    
+This GET method has two formats for different use cases.      
 For example, http://127.0.0.1:5000/entity/7/ORG or http://127.0.0.1:5000/entity/7
 
 #### Response 
@@ -467,16 +481,34 @@ For http://127.0.0.1:5000/entity/7
     
 It returns all the named entities of all categories stored in the databse with the input news id.
     
-## Docker
+## Installation 
+### Docker
 The application is containerised in a docker image.
     
 To start running, in the terminal input the following,
 ```
-    docker pull aliceyangcodehaha/ner-flask-api-postgres-docker
+    docker pull docker.pkg.github.com/hanyujiangg/ner-flask-api-postgres-docker/python-docker:1.1
 ```
-And use send news API through Postman to start off. 
+
+    Run the pulled docker image and publish a port for our container
+```
+    docker run --publish 5000:5000 docker.pkg.github.com/hanyujiangg/ner-flask-api-postgres-docker/python-docker:1.1
+```
+This should be the output after executing the above command:
+```
+  Jiangs-MBP:~ Hanyu$ docker run --publish 5000:5000 docker.pkg.github.com/hanyujiangg/ner-flask-api-postgres-docker/python-docker:1.1
+ * Serving Flask app 'flask_api' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://172.17.0.2:5000/ (Press CTRL+C to quit)
+```
+And use send news API through Postman to start off. Please note that the default URL is localhost:5000.
     
-## Postgres database configuration 
+### Postgres database configuration 
 The application is supposed to connect with a local Postgres database. 
 Create a local postgres database and change the connection.py accordingly.
     
@@ -488,12 +520,21 @@ DB_HOST = "batyr.db.elephantsql.com"
 DB_PORT = "5432"
     
 ```
+Then run the following command line to create the tables for News and Entity
+    ```
+    python createtable.py
+    ```
+The news retrival, entity retrival and news and entity storing functions should work after this step. 
+    
 However, the send news function should work even without a database. 
 
 ## Reference
 1. https://docs.docker.com/language/python/build-images/
 2. https://towardsdatascience.com/the-right-way-to-build-an-api-with-python-cd08ab285f8f
 3. https://flask.palletsprojects.com/en/2.0.x/
+4. https://spacy.io/usage/spacy-101
+5. https://nlp.stanford.edu/software/CRF-NER.html
+    
     
 
 
